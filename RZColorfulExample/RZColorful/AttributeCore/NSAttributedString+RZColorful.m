@@ -147,7 +147,7 @@
     for (NSInteger i = tempPlaceHolders.count - 1; i >= 0; i--) {
         NSString *placeholder = tempPlaceHolders[i];
         NSString *url = index < urls.count? urls[index]:@"";
-        NSString *img = [NSString stringWithFormat:@"<img style=\"max-width:98%%;height:auto;\" src=\"%@\" alt=\"图片缺失\">", url];
+        NSString *img = [NSString stringWithFormat:@"<img style=\"max-width:98%%;height:auto;\" src=\"%@\">", url];
         index++; 
         html = [html stringByReplacingOccurrencesOfString:placeholder withString:img];
     }
