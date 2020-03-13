@@ -70,6 +70,8 @@ RZColorfulAttributeBox *RZ_ATTRIBUTEBOXBY(id content, RZColorfulAttributeBoxType
 - (NSAttributedString *)confer {
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc]init];
     for (RZColorfulAttributeBox *box in self.contents) {
+        NSLog(@"box.type:%ld",(long)box.type);
+        NSLog(@"box.type:%@",box.text);
         switch (box.type) {
             case RZColorfulAttributeBoxTypePlainText: {
                 NSMutableDictionary *attr = [box.attribute code].mutableCopy;
