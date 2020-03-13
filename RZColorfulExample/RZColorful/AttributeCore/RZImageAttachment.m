@@ -26,6 +26,12 @@
 
 @property (nonatomic, copy) id URL;
 
+@property (nonatomic, copy) NSString *Alt;
+
+@property (nonatomic, copy) NSString *ImgId;
+
+@property (nonatomic, copy) NSString *VideoId;
+
 @end
 
 @implementation RZImageAttachment
@@ -69,6 +75,36 @@
     __weak typeof(self) weakSelf = self;
     return ^id(NSString *tapId) {
         weakSelf.URL = tapId.rz_encodedString;
+        return weakSelf;
+    };
+}
+/**
+ 设置alt
+ */
+- (RZImageAttachment *(^)(NSString *alt))alt {
+    __weak typeof(self)weakSelf = self;
+    return ^id (NSString *alt) {
+        weakSelf.Alt = alt;
+        return weakSelf;
+    };
+}
+/**
+ 设置id
+ */
+- (RZImageAttachment *(^)(NSString *imgid))imgid {
+    __weak typeof(self)weakSelf = self;
+    return ^id (NSString *imgid) {
+        weakSelf.ImgId = imgid;
+        return weakSelf;
+    };
+}
+/**
+ 设置videoid
+ */
+- (RZImageAttachment *(^)(NSString *videoid))videoid {
+    __weak typeof(self)weakSelf = self;
+    return ^id (NSString *videoid) {
+        weakSelf.VideoId = videoid;
         return weakSelf;
     };
 }
@@ -131,7 +167,19 @@
     if (_imageBounds.size.height > 0) {
         height = [NSString stringWithFormat:@"height:%fpx;", _imageBounds.size.height];
     }
-    NSString *html = [NSString stringWithFormat:@"<img style=\"%@%@\" src=\"%@\"/>", width, height, imageUrl];
+    NSString *tagStr = @"";
+    NSString *imgIdStr = @"";
+    NSString *videoIdStr = @"";
+    if (_Alt.length>0) {
+        tagStr = [NSString stringWithFormat:@" alt=\"%@\"", _Alt];
+    }
+    if (_ImgId.length>0) {
+        imgIdStr = [NSString stringWithFormat:@" id=\"%@\"", _ImgId];
+    }
+    if (_VideoId.length>0) {
+        videoIdStr = [NSString stringWithFormat:@" videoid=\"%@\"", _VideoId];
+    }
+    NSString *html = [NSString stringWithFormat:@"<img style=\"%@%@\" src=\"%@\"%@%@%@/>", width, height, imageUrl, tagStr, imgIdStr, videoIdStr];
     return html;
 }
 

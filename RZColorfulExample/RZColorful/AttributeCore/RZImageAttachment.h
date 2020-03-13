@@ -58,6 +58,18 @@ typedef NS_ENUM(NSInteger, RZImageAttachmentHorizontalAlign) {
  给属性文本添加点击事件  只有UITextView可以用，且UITextView需要实现block  didTapTextView
  */
 - (RZImageAttachment * (^)(NSString *tapId))tapAction;
+/*
+ 给属性文本添加alt
+ */
+- (RZImageAttachment * (^)(NSString *alt))alt;
+/*
+ 给属性文本添加id
+ */
+- (RZImageAttachment * (^)(NSString *imgid))imgid;
+/*
+ 给属性文本添加videoid
+ */
+- (RZImageAttachment * (^)(NSString *videoid))videoid;
 /**
  水平对齐方式
  align 上，中，下
